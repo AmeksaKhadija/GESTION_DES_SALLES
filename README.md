@@ -6,7 +6,7 @@
 
 ###
 
-<h2 align="left">MATIN : </h2>
+<h4 align="left">les tâches réalisées durant cette la journée : </h4>
 
 ###
 
@@ -14,15 +14,6 @@
 ✨ faire la presentation du brief precédent<br>
 ✨ faire .env dans le brief du freelanceHub<br>
 ✨ documentation sur deference between labrery et framework<br>
-</p>
-
-###
-
-<h2 align="left">SOIR : </h2>
-
-###
-    
-<p align="left">
 ✨ docuentation sur laravel<br>
 ✨ installer laravel 9<br>
 ✨ switch laravel 9 to 7<br>
@@ -36,7 +27,7 @@
 
 ###
 
-<h4 align="left">les tâches réalisées durant toute la journée : </h4>
+<h4 align="left">les tâches réalisées durant cette la journée : </h4>
 
 ###
 
