@@ -13,7 +13,7 @@ class SalleController extends Controller
      */
     public function index()
     {
-        //
+        return view('/salles');
     }
 
     /**
