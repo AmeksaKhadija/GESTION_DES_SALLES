@@ -36,7 +36,9 @@
 ✨ faire la migration du brief (les tableaux avec leurs colonnes)<br>
 ✨ création du modèle et des contrôleurs nécessaires pour ce brief<br>
 ✨ commencement de la partie front plutôt que le front correspond à l'admin pour ajouter des salles<br>
-
+✨ fair dashboard evec utilisation de layout (partie front) <br>
+✨ voir un exemple de crud en laravel <br>
+✨ je me suis documentée sur le système de routage et la structure MVC dans Laravel<br>
 </p>
 
 ###

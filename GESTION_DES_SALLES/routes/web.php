@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\SalleController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 /*
@@ -18,3 +19,4 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', [UserController::class, 'index']);
+Route::get('/salles', [SalleController::class, 'index']);
