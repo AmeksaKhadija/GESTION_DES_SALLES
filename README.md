@@ -42,3 +42,23 @@
 </p>
 
 ###
+
+<h3 align="left">19/02/2024</h3>
+
+###
+
+<h4 align="left">les tâches réalisées durant cette la journée : </h4>
+
+###
+
+<p align="left">
+✨ améliorer le front correspond au back office, c'est-à-dire le tableau de bord d'admin<br>
+✨ l'ajout et l'affichage des salles<br>
+✨ j'ai commencée la modification des salles mais je n'est pas encore terminée<br>
+✨ <br>
+✨ <br>
+✨ <br>
+✨ <br>
+</p>
+
+###

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Salle;
 
 class SalleController extends Controller
 {
@@ -13,7 +14,9 @@ class SalleController extends Controller
      */
     public function index()
     {
-        return view('/salles');
+        $salle = Salle::all();
+        // dd($salle);
+        return view('/salles',['salles' => $salle]);
     }
 
     /**
@@ -23,7 +26,7 @@ class SalleController extends Controller
      */
     public function create()
     {
-        //
+        return view('/salles');
     }
 
     /**
@@ -34,7 +37,20 @@ class SalleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd($request->name);
+        $request->validate([
+            'name' => 'required',
+            'description' => 'required',
+            'status' => 'required',
+        ]);
+
+        $salle = new Salle();
+        $salle->name = $request->name;
+        $salle->description = $request->description;
+        $salle->status = $request->status;
+
+        $salle->save();
+        return redirect('/salles');
     }
 
     /**
@@ -56,7 +72,8 @@ class SalleController extends Controller
      */
     public function edit($id)
     {
-        //
+        $salle = Salle::find($id);
+        return view('/editeSalle');
     }
 
     /**
@@ -68,7 +85,17 @@ class SalleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'description' => 'required',
+        ]);
+
+        $salle = new Salle();
+        $salle->name = $request->name;
+        $salle->description = $request->description;
+
+        $salle->save();
+        return redirect('/salles');
     }
 
     /**

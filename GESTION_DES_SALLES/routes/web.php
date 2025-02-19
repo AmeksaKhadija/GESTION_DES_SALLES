@@ -19,4 +19,9 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', [UserController::class, 'index']);
-Route::get('/salles', [SalleController::class, 'index']);
+Route::get('/salles', [SalleController::class, 'index'])->name('salles.index');
+Route::post('/salles', [SalleController::class, 'store'])->name('salles.store');
+Route::get('/editeSalle/{id}', [SalleController::class, 'edit'])->name('editSalle/{id}');
+Route::post('/updateSalle', [SalleController::class, 'update'])->name('updateSalle');
+
+// Route::
