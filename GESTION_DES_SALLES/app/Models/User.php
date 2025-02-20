@@ -27,12 +27,12 @@ class User extends Authenticatable
 
     public function role()
     {
-        return $this->hasMany(Role::class);
+        return $this->hasOne(Role::class);
     }
 
     public function reservations()
     {
-        return $this->hasMany(Reservation::class);
+        return $this->belongsToMany(Reservation::class);
     }
 
     /**

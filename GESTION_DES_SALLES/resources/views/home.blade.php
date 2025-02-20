@@ -2,7 +2,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
 <style>
-    .card{
+    .card {
         margin-left: 10%;
         margin-top: 5%;
     }
@@ -10,33 +10,38 @@
 
 
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">Navbar</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-      <div class="navbar-nav">
-        <a class="nav-link active" aria-current="page" href="#">Home</a>
-        <a class="nav-link" href="#">Features</a>
-        <a class="nav-link" href="#">Pricing</a>
-        <a class="nav-link disabled" aria-disabled="true">Disabled</a>
-      </div>
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">Navbar</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-link active" aria-current="page" href="/">Home</a>
+                <a class="nav-link" href="#">Features</a>
+                <a class="nav-link" href="/salles">Pricing</a>
+            </div>
+        </div>
     </div>
-  </div>
 </nav>
 
 
 @foreach($salles as $salle)
+@if($salle->status == 'allowed')
 <div class="card" style="width: 18rem;">
-  <img src="..." class="card-img-top" alt="...">
-  <div class="card-body">
-    <h5 class="card-title">{{$salle->name}}</h5>
-    <p class="card-text">{{$salle->description}}</p>
-    <p class="card-text">{{$salle->description}}</p>
-    <a href="#" class="btn btn-primary">Reserver cette salle</a>
-  </div>
+    <img src="..." class="card-img-top" alt="...">
+    <div class="card-body">
+        <h5 class="card-title">{{$salle->name}}</h5>
+        <p class="card-description">{{$salle->description}}</p>
+        <p class="card-status">{{$salle->status}}</p>
+        <form method="POST" action="{{ route('reservee') }}">
+            @csrf
+            @method('POST')
+            <input type="submit" class="btn btn-sm btn-primary" value="Reserver cette salle">
+        </form>
+    </div>
 </div>
+@endif
 @endforeach
 
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>

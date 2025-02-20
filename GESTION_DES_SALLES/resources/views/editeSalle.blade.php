@@ -27,11 +27,6 @@
                 <input type="text" class="form-control" name="description" value="{{$salle->description}}" id="description" placeholder="Saisir le description du salle"
                     aria-describedby="nomUtilisateur">
             </div>
-            <div class="mb-3">
-                <label for="status" class="form-label">Status</label>
-                <input type="text" class="form-control" name="status" value="{{$salle->status}}" id="status" placeholder="Saisir le status du salle"
-                    aria-describedby="nomUtilisateur">
-            </div>
 
             <div class="modal-footer">
                 <a href="/salles"><input type="button" class="btn btn-dark" data-dismiss="modal"
