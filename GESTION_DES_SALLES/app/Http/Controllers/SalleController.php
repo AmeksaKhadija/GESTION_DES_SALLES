@@ -16,7 +16,14 @@ class SalleController extends Controller
     {
         $salle = Salle::all();
         // dd($salle);
-        return view('/salles',['salles' => $salle]);
+        return view('/salles', ['salles' => $salle]);
+    }
+
+    public function showSalleToReserve()
+    {
+        $salle = Salle::all();
+        // dd($salle);
+        return view('/home', ['salles' => $salle]);
     }
 
     /**
@@ -41,13 +48,12 @@ class SalleController extends Controller
         $request->validate([
             'name' => 'required',
             'description' => 'required',
-            'status' => 'required',
         ]);
 
         $salle = new Salle();
         $salle->name = $request->name;
         $salle->description = $request->description;
-        $salle->status = $request->status;
+        $salle->status = 'Allowed';
 
         $salle->save();
         return redirect('/salles');
@@ -73,7 +79,8 @@ class SalleController extends Controller
     public function edit($id)
     {
         $salle = Salle::find($id);
-        return view('/editeSalle');
+
+        return view('/editeSalle', ['salle' => $salle]);
     }
 
     /**
@@ -83,18 +90,22 @@ class SalleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
+        // dd($request);
         $request->validate([
             'name' => 'required',
             'description' => 'required',
+            'status' => 'required',
         ]);
 
-        $salle = new Salle();
+        $salle = Salle::find($request->id);
+        // dd($salle);
         $salle->name = $request->name;
         $salle->description = $request->description;
-
+        $salle->status = $request->status;
         $salle->save();
+
         return redirect('/salles');
     }
 
@@ -106,6 +117,21 @@ class SalleController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $salle = Salle::find($id);
+
+        $salle->delete();
+        return redirect('/salles');
     }
+
+    public function desactivate($id)
+    {
+        $salle = Salle::find($id);
+
+        $salle->status = 'reservee';
+        $salle->save();
+
+        return redirect('/salles');
+    }
+
+    public function reserve(){}
 }

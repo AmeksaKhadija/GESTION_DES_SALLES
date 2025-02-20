@@ -14,14 +14,23 @@ use App\Http\Controllers\UserController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('home');
+// });
 
+// crud du salle 
 Route::get('/dashboard', [UserController::class, 'index']);
 Route::get('/salles', [SalleController::class, 'index'])->name('salles.index');
 Route::post('/salles', [SalleController::class, 'store'])->name('salles.store');
-Route::get('/editeSalle/{id}', [SalleController::class, 'edit'])->name('editSalle/{id}');
+Route::get('/editeSalle/{id}', [SalleController::class, 'edit'])->name('editeSalle/{id}');
 Route::post('/updateSalle', [SalleController::class, 'update'])->name('updateSalle');
+Route::delete('/deleteSalle/{id}', [SalleController::class, 'destroy'])->name('deleteSalle');
 
-// Route::
+// activer une salle 
+Route::post('/salle/{id}/desactivate', [SalleController::class, 'desactivate'])->name('desactivateSalle');
+
+// home page
+Route::get('/', [SalleController::class, 'showSalleToReserve'])->name('home.showSalleToReserve');
+// Route::get('/', function () {
+//     return view('home');
+// });

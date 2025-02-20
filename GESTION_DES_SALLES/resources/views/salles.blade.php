@@ -43,15 +43,16 @@
                             </a>
                         </td>
                         <td class="d-flex gap-2">
-                            <form method="POST" action="">
-                                <!-- <input type="hidden" name="id" value=""> -->
-                                <input type="hidden" name="status" value="active">
-                                <input type="submit" class="btn btn-sm btn-neutral" value="Activer">
+                            <form method="POST" action="{{ route('desactivateSalle', $salle->id) }}">
+                                @csrf
+                                <input type="submit" class="btn btn-sm {{ $salle->status == 'reservee' ? 'btn-dark' : 'btn-neutral' }}" 
+                                value="{{ $salle->status == 'reservee' ? 'Reservée' : 'allowed' }}">
                             </form>
                             <a href="/editeSalle/{{ $salle->id }}"><img class="ms-2 edit"><input type="submit" class="btn btn-sm btn-neutral" value="Modifier"></a>
-                            <form method="POST" action="">
-                                <!-- <input type="hidden" name="id" value=""> -->
-                                <input type="submit" class="btn btn-sm btn-neutral" value="Supremer">
+                            <form method="POST" action="{{ route('deleteSalle', $salle->id) }}">
+                                @csrf
+                                @method('DELETE')
+                                <input type="submit" class="btn btn-sm btn-danger" value="Supprimer">
                             </form>
                         </td>
                     </tr>
@@ -69,6 +70,7 @@
         <div class="modal-content">
             <form method="POST" action="{{route('salles.store')}}">
                 @csrf
+                @method('POST')
                 <div class="modal-header">
                     <h1 class="modal-title fs-5" id="addSalleLabel">Ajouter Salle</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -82,11 +84,6 @@
                     <div class="mb-3">
                         <label for="description" class="form-label">Description</label>
                         <input type="text" class="form-control" name="description" id="description" placeholder="Saisir le description du salle"
-                            aria-describedby="nomUtilisateur">
-                    </div>
-                    <div class="mb-3">
-                        <label for="status" class="form-label">Status</label>
-                        <input type="text" class="form-control" name="status" id="status" placeholder="Saisir le status du salle"
                             aria-describedby="nomUtilisateur">
                     </div>
                     <div class="modal-footer">
