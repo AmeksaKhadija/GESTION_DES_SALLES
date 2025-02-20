@@ -22,7 +22,7 @@ class SalleController extends Controller
     public function showSalleToReserve()
     {
         $salle = Salle::all();
-        // dd($salle);
+        // dd($salle->status);
         return view('/home', ['salles' => $salle]);
     }
 
@@ -53,7 +53,7 @@ class SalleController extends Controller
         $salle = new Salle();
         $salle->name = $request->name;
         $salle->description = $request->description;
-        $salle->status = 'Allowed';
+        $salle->status = 'allowed';
 
         $salle->save();
         return redirect('/salles');
@@ -96,14 +96,12 @@ class SalleController extends Controller
         $request->validate([
             'name' => 'required',
             'description' => 'required',
-            'status' => 'required',
         ]);
 
         $salle = Salle::find($request->id);
         // dd($salle);
         $salle->name = $request->name;
         $salle->description = $request->description;
-        $salle->status = $request->status;
         $salle->save();
 
         return redirect('/salles');
@@ -133,5 +131,9 @@ class SalleController extends Controller
         return redirect('/salles');
     }
 
-    public function reserve(){}
+    public function reservee()
+    {
+        echo "hh";
+        
+    }
 }

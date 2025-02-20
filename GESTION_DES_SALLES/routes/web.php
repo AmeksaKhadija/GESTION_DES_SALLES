@@ -34,3 +34,5 @@ Route::get('/', [SalleController::class, 'showSalleToReserve'])->name('home.show
 // Route::get('/', function () {
 //     return view('home');
 // });
+
+Route::post('/reserveeSalle',[SalleController::class,'reservee'])->name('reservee');
