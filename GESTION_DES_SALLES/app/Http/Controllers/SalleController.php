@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Reservation;
 use Illuminate\Http\Request;
 use App\Models\Salle;
+use Illuminate\Support\Facades\Auth;
+
 
 class SalleController extends Controller
 {
@@ -121,19 +124,27 @@ class SalleController extends Controller
         return redirect('/salles');
     }
 
-    public function desactivate($id)
+    // public function desactivate($id)
+    // {
+    //     $salle = Salle::find($id);
+
+    //     $salle->status = 'reservee';
+    //     $salle->save();
+
+    //     return redirect('/salles');
+    // }
+
+    
+
+
+    public function mesReservations(Request $request)
     {
-        $salle = Salle::find($id);
+        $request->validate([
+            'user_id' => 'required|integer',
+        ]);
 
-        $salle->status = 'reservee';
-        $salle->save();
+        $reservations = Reservation::where('user_id', $request->user_id)->with('salle')->get();
 
-        return redirect('/salles');
-    }
-
-    public function reservee()
-    {
-        echo "hh";
-        
+        return view('mes_reservations', compact('reservations'));
     }
 }

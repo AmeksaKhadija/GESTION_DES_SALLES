@@ -74,3 +74,21 @@
 ✨ documentation sur deference between header et redirect<br>
 ✨ commencement de l'affichage des reservatio d'un user<br>
 </p>
+
+###
+
+<h3 align="left">21/02/2024</h3>
+
+###
+
+<h4 align="left">les tâches réalisées durant cette la journée : </h4>
+
+###
+
+<p align="left">
+✨ j'ai complitée les taches nécessaires du brief c-à-d les taches demmandée<br>
+✨ affichages des reservations d'un utilisateur par id<br>
+✨ accepter ou rejeter une reservation <br>
+✨ si une salle reservee ne doit pas etre afficher dans la page home<br>
+✨ <br>
+</p>

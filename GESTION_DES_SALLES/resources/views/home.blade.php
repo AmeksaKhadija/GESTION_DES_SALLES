@@ -20,10 +20,24 @@
                 <a class="nav-link active" aria-current="page" href="/">Home</a>
                 <a class="nav-link" href="#">Features</a>
                 <a class="nav-link" href="/salles">Pricing</a>
+
             </div>
+
         </div>
+        <form action="{{ route('mes_reservations') }}" method="GET">
+            <label for="user_id">Votre ID :</label>
+            <input type="text" name="user_id" required>
+            <button type="submit">Voir mes réservations</button>
+        </form>
     </div>
 </nav>
+@if(session('success'))
+<div class="alert alert-success">{{ session('success') }}</div>
+@endif
+
+@if(session('error'))
+<div class="alert alert-danger">{{ session('error') }}</div>
+@endif
 
 
 @foreach($salles as $salle)
@@ -34,15 +48,12 @@
         <h5 class="card-title">{{$salle->name}}</h5>
         <p class="card-description">{{$salle->description}}</p>
         <p class="card-status">{{$salle->status}}</p>
-        <form method="POST" action="{{ route('reservee') }}">
-            @csrf
-            @method('POST')
-            <input type="submit" class="btn btn-sm btn-primary" value="Reserver cette salle">
-        </form>
+
+        <a href="{{ route('reservation.create',$salle->id)}}" class="btn btn-primary btn-sm">
+            Réserver cette salle
+        </a>
+
     </div>
 </div>
 @endif
 @endforeach
-
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Reservation;
+use App\Models\Salle;
 use Illuminate\Http\Request;
 
 class ReservationController extends Controller
@@ -13,7 +15,8 @@ class ReservationController extends Controller
      */
     public function index()
     {
-        //
+        $reservation = Reservation::all();
+        return view('reservation',['reservations' => $reservation]);
     }
 
     /**
@@ -21,9 +24,11 @@ class ReservationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id)
     {
-        //
+        $salle = Salle::find($id);
+        return view('/reserver',['salle'=> $salle]);
+        
     }
 
     /**
@@ -32,9 +37,53 @@ class ReservationController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+    
+
     public function store(Request $request)
     {
-        //
+
+        $request->validate([
+            'date_debut' => 'required|date|after:now',
+            'date_fin' => 'required|date|after:date_debut',
+            'salle_id' => 'required|exists:salles,id',
+        ]);
+
+        // dd($request);
+
+        $salle = Salle::findOrFail($request->salle_id);
+
+        if ($salle->status != 'allowed') {
+            return redirect()->back()->with('error', 'Cette salle est déjà réservée.');
+        }
+
+        Reservation::create([
+            'date_debut' => $request->date_debut,
+            'date_fin' => $request->date_fin,
+            'user_id' => 1,
+            'salle_id' => $salle->id,
+            'status' => 'pending',
+        ]);
+
+        // $salle->status = 'reservee';
+        // $salle->save();
+
+        return redirect('/')->with('success', 'attendu, admin doit accepter votre réservation.');
+    }
+
+
+    public function accepter($id){
+        // echo "hh";
+        $reservation = Reservation::find($id);
+        // dd($reservation);
+        $reservation->status = 'accepter';
+        $reservation->save();
+
+        $salle = Salle::find($reservation->salle_id);
+
+        $salle->status = 'reservee';
+        $salle->save();
+
+        return redirect()->back();
     }
 
     /**
@@ -79,6 +128,9 @@ class ReservationController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $reservation = Reservation::find($id);
+
+        $reservation->delete();
+        return redirect()->back();
     }
 }
