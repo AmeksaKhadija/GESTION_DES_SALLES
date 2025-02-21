@@ -43,17 +43,18 @@
                             </a>
                         </td>
                         <td class="d-flex gap-2">
-                            <form method="POST" action="{{ route('desactivateSalle', $salle->id) }}">
-                                @csrf
+                            <form>
                                 <input type="submit" class="btn btn-sm {{ $salle->status == 'reservee' ? 'btn-dark' : 'btn-neutral' }}" 
                                 value="{{ $salle->status == 'reservee' ? 'Reservée' : 'allowed' }}">
                             </form>
                             <a href="/editeSalle/{{ $salle->id }}"><img class="ms-2 edit"><input type="submit" class="btn btn-sm btn-neutral" value="Modifier"></a>
+                            @if($salle->status != 'reservee')
                             <form method="POST" action="{{ route('deleteSalle', $salle->id) }}">
                                 @csrf
                                 @method('DELETE')
                                 <input type="submit" class="btn btn-sm btn-danger" value="Supprimer">
                             </form>
+                            @endif
                         </td>
                     </tr>
                     @endforeach

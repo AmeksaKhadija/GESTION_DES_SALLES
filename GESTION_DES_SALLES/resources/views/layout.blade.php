@@ -146,8 +146,8 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="/dashboard" class="nav-link" href="adminCategories.php">
-                                <i class="bi bi-globe-americas"></i> Reservations
+                            <a href="/reservation" class="nav-link" href="adminLivres.php">
+                                <i class="bi bi-file-text"></i> Reservation
                             </a>
                         </li>
                         <li class="nav-item">
@@ -191,6 +191,7 @@
                 @yield('statistics')
                 @yield('salles')
                 @yield('editeSalle')
+                @yield('reservations')
             </main>
         </div>
     </div>
